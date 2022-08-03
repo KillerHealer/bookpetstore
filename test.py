@@ -10,10 +10,10 @@ dog_category = {"id": 1, "name": "Dogs"}
 my_dog = {"id": 1, "name": "my_dog", "category": dog_category, "status": "available"}
 my_user = {"id": 10, "username": "Me", "firstName": "Noam", "lastName": "Barkai",
            "email": "barkai@email.com", "password": "12345", "phone": "12345", "userStatus": 2}
-my_user_list = [{"id": 10, "username": "Me", "firstName": "Noam", "lastName": "Barkai",
+my_user_list = """[{"id": 10, "username": "Me", "firstName": "Noam", "lastName": "Barkai",
                  "email": "barkai@email.com", "password": "12345", "phone": "12345", "userStatus": 2},
                 {"id": 11, "username": "theUser", "firstName": "John", "lastName": "James",
-                 "email": "john@email.com", "password": "12345", "phone": "12345", "userStatus": 1}]
+                 "email": "john@email.com", "password": "12345", "phone": "12345", "userStatus": 1}]"""
 
 
 def test_put_pet():
@@ -45,7 +45,7 @@ def test_get_pet_by_id():
 
 
 def test_post_pet():
-    response = requests.post(f"{url}/pet/11110", params="name=doge&status=available", headers=header)
+    response = requests.post(f"{url}/pet/1", params="name=doge&status=available", headers=header)
     assert response.status_code == 200
 
 
@@ -72,7 +72,6 @@ def test_post_order():
 
 def test_get_order_by_id():
     response = requests.get(f"{url}/store/order/1", headers=header)
-    json_data = json.loads(response.content)
     assert response.status_code == 200
 
 
@@ -103,4 +102,14 @@ def test_get_user_out_of_system():
 
 def test_get_user_by_id():
     response = requests.get(f"{url}/user/a", headers=header)
+    assert response.status_code == 200
+
+
+def test_put_logged_in_user():
+    response = requests.get(f"{url}/user/theUser", headers=header)
+    assert response.status_code == 200
+
+
+def test_delete_user():
+    response = requests.delete(f"{url}/user/theUser", headers=header)
     assert response.status_code == 200
