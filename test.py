@@ -3,6 +3,7 @@ import logging
 import requests
 from api import pet_api
 
+
 url = "https://petstore3.swagger.io/api/v3"
 header = {'accept': 'application/json'}
 dog_category = {"id": 1, "name": "Dogs"}
@@ -77,7 +78,7 @@ def test_post_pet():
 
 def test_delete_pet():
     """
-    finds pet by id and delets it
+    finds pet by id and deletes it
     :return:
     """
     logging.info("finding pet by id and deleting it")
