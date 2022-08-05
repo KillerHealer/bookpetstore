@@ -2,18 +2,20 @@ import pytest
 import logging
 import requests
 from api import pet_api
-
+from models import Pet
+from models.Pet import Status
 
 url = "https://petstore3.swagger.io/api/v3"
 header = {'accept': 'application/json'}
 dog_category = {"id": 1, "name": "Dogs"}
-my_dog = {"id": 1, "name": "my_dog", "category": dog_category, "status": "available"}
+my_dog = Pet.Pet(1, "my_dog", dog_category, "available")
 my_user = {"id": 10, "username": "Me", "firstName": "Noam", "lastName": "Barkai",
            "email": "barkai@email.com", "password": "12345", "phone": "12345", "userStatus": 2}
 my_user_list = """[{"id": 10, "username": "Me", "firstName": "Noam", "lastName": "Barkai",
                  "email": "barkai@email.com", "password": "12345", "phone": "12345", "userStatus": 2},
                 {"id": 11, "username": "theUser", "firstName": "John", "lastName": "James",
                  "email": "john@email.com", "password": "12345", "phone": "12345", "userStatus": 1}]"""
+api = pet_api.PetApi()
 
 
 def test_put_pet():
@@ -22,8 +24,11 @@ def test_put_pet():
     :return:
     """
     logging.info("trying to find and update the pet")
-    response = requests.put(f"{url}/pet", headers=header, data={'name': 'doge'})
-    assert response.status_code == 200
+    response = api.put_pet({'name': 'doge'})
+    if type(response) == Pet:
+        assert response.name == "doge"
+    else:
+        raise f"{response.status_code}"
 
 
 def test_post_new_pet():
@@ -32,8 +37,11 @@ def test_post_new_pet():
     :return:
     """
     logging.info("trying to add a new pet")
-    response = requests.post(f"{url}/pet", headers=header, data=my_dog)
-    assert response.status_code == 200
+    response = api.post_new_pet(my_dog)
+    if type(response) == Pet:
+        assert response.id == my_dog.id
+    else:
+        raise f"{response.status_code}"
 
 
 def test_get_pet_by_status():
@@ -42,8 +50,14 @@ def test_get_pet_by_status():
     :return:
     """
     logging.info("trying to find all pets with the status")
-    response = requests.get(f"{url}/pet/findByStatus", params="status=available", headers=header)
-    assert response.status_code == 200
+    response = api.get_pet_by_status("available")
+    if type(response) == [Pet]:
+        for res in response:
+            if res.status != Status.available:
+                assert False
+        assert True
+    else:
+        raise f"{response.status_code}"
 
 
 def test_get_pet_by_tags():
@@ -52,8 +66,14 @@ def test_get_pet_by_tags():
     :return:
     """
     logging.info("trying to find pets with given tags")
-    response = requests.get(f"{url}/pet/findByTags", params="tags=cat", headers=header)
-    assert response.status_code == 200
+    response = api.get_pet_by_tags("tags=cat")
+    if type(response) == [Pet]:
+        for res in response:
+            if res.tags != Status.available:
+                assert False
+        assert True
+    else:
+        raise f"{response.status_code}"
 
 
 def test_get_pet_by_id():
@@ -62,8 +82,11 @@ def test_get_pet_by_id():
     :return:
     """
     logging.info("trying to find pets with given id")
-    response = requests.get(f"{url}/pet/10", headers=header)
-    assert response.status_code == 200
+    response = api.get_pet_by_id(10)
+    if type(response) == Pet:
+        assert response.id == 10
+    else:
+        raise f"{response.status_code}"
 
 
 def test_post_pet():
@@ -72,8 +95,11 @@ def test_post_pet():
     :return:
     """
     logging.info("finding pet by id and updating name and status")
-    response = requests.post(f"{url}/pet/1", params="name=doge&status=available", headers=header)
-    assert response.status_code == 200
+    response = api.post_update_pet("name=doge&status=available")
+    if type(response) == Pet:
+        assert response.name == "doge"
+    else:
+        raise f"{response.status_code}"
 
 
 def test_delete_pet():
@@ -82,8 +108,11 @@ def test_delete_pet():
     :return:
     """
     logging.info("finding pet by id and deleting it")
-    response = requests.delete(f"{url}/pet/2", headers=header)
-    assert response.status_code == 200
+    response = api.delete_pet(2)
+    if type(response) == Pet:
+        assert False
+    else:
+        raise f"didn't find the deleted pet good: {response.status_code}"
 
 
 def test_post_upload_image():

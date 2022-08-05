@@ -12,7 +12,7 @@ class Status(Enum):
 
 class Pet(baseObj):
 
-    def __init__(self, id, name, category=None, photoUrls=None, tags=None, status=None):
+    def __init__(self, id, name, category=None, photoUrls=None, tags=None, status=Status.available):
         self._photo_urls = None
         self._tags = None
         self._status = None
@@ -24,7 +24,7 @@ class Pet(baseObj):
         if tags is not None:
             self._tags = tags
         if status is not None:
-            self._status = Status[status]
+            self._status = status
 
     @property
     def id(self):
@@ -75,3 +75,35 @@ class Pet(baseObj):
         :type: Category
         """
         self._category = category
+
+    @property
+    def status(self):
+        """Gets the status of this Pet.  # noqa: E501
+        :return: The status of this Pet.  # noqa: E501
+        :rtype: status
+        """
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """Sets the status of this Pet.
+        :param status: The status of this Pet.  # noqa: E501
+        :type: status
+        """
+        self._status = status
+
+    @property
+    def tags(self):
+        """Gets the tags of this Pet.  # noqa: E501
+        :return: The tags of this Pet.  # noqa: E501
+        :rtype: tags
+        """
+        return self._tags
+
+    @tags.setter
+    def tags(self, tags):
+        """Sets the tags of this Pet.
+        :param tags: The tags of this Pet.  # noqa: E501
+        :type: tags
+        """
+        self._tags = tags
