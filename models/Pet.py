@@ -107,3 +107,19 @@ class Pet(baseObj):
         :type: tags
         """
         self._tags = tags
+
+    @property
+    def photourls(self):
+        """Gets the photo urls of this Pet.  # noqa: E501
+        :return: The photo urls of this Pet.  # noqa: E501
+        :rtype: photo urls
+        """
+        return self._tags
+
+    @photourls.setter
+    def photourls(self, photo_urls):
+        """Sets the photo urls of this Pet.
+        :param photo_urls: The photo urls of this Pet.  # noqa: E501
+        :type: photo urls
+        """
+        self._photo_urls = photo_urls

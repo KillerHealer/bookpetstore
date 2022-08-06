@@ -28,7 +28,8 @@ def test_put_pet():
     if type(response) == Pet:
         assert response.name == "doge"
     else:
-        raise f"{response.status_code}"
+        logging.warning(f"status code {response}")
+        assert False
 
 
 def test_post_new_pet():
@@ -41,7 +42,8 @@ def test_post_new_pet():
     if type(response) == Pet:
         assert response.id == my_dog.id
     else:
-        raise f"{response.status_code}"
+        logging.warning(f"status code {response}")
+        assert False
 
 
 def test_get_pet_by_status():
@@ -57,7 +59,8 @@ def test_get_pet_by_status():
                 assert False
         assert True
     else:
-        raise f"{response.status_code}"
+        logging.warning(f"status code {response}")
+        assert False
 
 
 def test_get_pet_by_tags():
@@ -67,13 +70,14 @@ def test_get_pet_by_tags():
     """
     logging.info("trying to find pets with given tags")
     response = api.get_pet_by_tags("tags=cat")
-    if type(response) == [Pet]:
+    if isinstance(response, (list,Pet.Pet)):
         for res in response:
             if res.tags != Status.available:
                 assert False
         assert True
     else:
-        raise f"{response.status_code}"
+        logging.warning(f"status code {response}")
+        assert False
 
 
 def test_get_pet_by_id():
@@ -83,10 +87,11 @@ def test_get_pet_by_id():
     """
     logging.info("trying to find pets with given id")
     response = api.get_pet_by_id(10)
-    if type(response) == Pet:
+    if isinstance(response, Pet.Pet):
         assert response.id == 10
     else:
-        raise f"{response.status_code}"
+        logging.warning(f"status code {response}")
+        assert False
 
 
 def test_post_pet():
@@ -99,7 +104,8 @@ def test_post_pet():
     if type(response) == Pet:
         assert response.name == "doge"
     else:
-        raise f"{response.status_code}"
+        logging.warning(f"status code {response}")
+        assert False
 
 
 def test_delete_pet():
@@ -112,7 +118,8 @@ def test_delete_pet():
     if type(response) == Pet:
         assert False
     else:
-        raise f"didn't find the deleted pet good: {response.status_code}"
+        logging.warning(f"didn't find the deleted pet good: {response}")
+        assert False
 
 
 def test_post_upload_image():
@@ -121,8 +128,12 @@ def test_post_upload_image():
     :return:
     """
     logging.info("finding pet by id and uploads an image for it")
-    response = requests.post(f"{url}/pet/11110/uploadImage", params="additionalMetadata=string", headers=header)
-    assert response.status_code == 200
+    response = api.post_upload_image("additionalMetadata=string", 11110)
+    if type(response) == Pet:
+        assert response.photourls == "string"
+    else:
+        logging.warning(f"status code {response}")
+        assert False
 
 
 def test_get_inventory_by_status():

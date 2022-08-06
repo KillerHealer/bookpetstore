@@ -84,3 +84,13 @@ class PetApi:
                 return my_pet
             else:
                 return res.status_code
+
+    def post_upload_image(self, image:str, id: int) -> Pet:
+        res = self._session.delete(url=f"{self._url}/pet/{id}/uploadImage", params=image, headers=self._headers)
+        if res.status_code == 200:
+            pet = res.json()
+            my_pet = Pet(**pet)
+            return my_pet
+        else:
+            return res.status_code
+
