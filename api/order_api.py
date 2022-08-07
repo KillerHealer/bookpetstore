@@ -4,7 +4,7 @@ from models.order import OrderStatus
 
 
 class Inventory:
-    def __init__(self, placed: int, approved: int, delivered: int):
+    def __init__(self, approved: int, delivered: int, placed: int = 0):
         self.placed = placed
         self.approved = approved
         self.delivered = delivered
@@ -21,7 +21,7 @@ class OrderApi:
         res = self._session.get(url=f"{self._url}/inventory", headers=self._headers)
         inv = res.json()
         if res.status_code == 200:
-            inv["placed"] = inv.pop("")
+            # inv["placed"] = inv.pop('') used to have a third parameter with no characters...
             my_inv = Inventory(**inv)
             return my_inv
         else:
