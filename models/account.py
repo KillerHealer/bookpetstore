@@ -2,27 +2,27 @@ from models.book import Book
 
 
 class Account:
-    def __init__(self, userId: str, username: str, books: Book):
-        self._userId = userId
+    def __init__(self, userID: str, username: str, books: Book):
+        self._userID = userID
         self._username = username
         self._books = books
 
     @property
-    def userId(self):
+    def userID(self):
         """
         gives back userId
         :return: str
         """
-        return self._userId
+        return self._userID
 
-    @userId.setter
-    def userId(self, userId):
+    @userID.setter
+    def userID(self, userID):
         """
         makes the userId another one
-        :param userId: the userId to be
+        :param userID: the userId to be
         :return: str
         """
-        self._userId = userId
+        self._userID = userID
 
     @property
     def username(self):

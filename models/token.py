@@ -6,3 +6,19 @@ class Token:
         self._status = status
         self._result = result
 
+    @property
+    def token(self):
+        """
+        gives back token
+        :return: str
+        """
+        return self._token
+
+    @token.setter
+    def token(self, token):
+        """
+        makes the token another one
+        :param token: the token to be
+        :return: str
+        """
+        self._token = token
