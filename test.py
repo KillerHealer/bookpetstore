@@ -10,6 +10,7 @@ from models import Pet
 from models.Pet import Status
 from models.order import Order, OrderStatus
 
+files = 'doggy.jpg'
 url = "https://petstore3.swagger.io/api/v3"
 header = {'accept': 'application/json'}
 dog_category = {"id": 1, "name": "Dogs"}
@@ -132,8 +133,9 @@ def test_post_upload_image():
     """
     pet = apiP.post_new_pet(my_dog)
     logging.info("finding pet by id and uploads an image for it")
-    pet_with_image = apiP.post_upload_image("additionalMetadata=string", 11110)
-    assert pet_with_image.photourls == "string"
+    pet_with_image = apiP.post_upload_image("additionalMetadata=string", pet.id, files)
+    logging.warning(f"{pet_with_image}")
+    assert pet_with_image.photourls == files
     # logging.warning(f"status code {response} from upload image")
 
 

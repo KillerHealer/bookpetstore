@@ -85,8 +85,9 @@ class PetApi:
             else:
                 return res.status_code
 
-    def post_upload_image(self, image:str, id: int) -> Pet:
-        res = self._session.post(url=f"{self._url}/{id}/uploadImage", params=image, headers=self._headers)
+    def post_upload_image(self, image:str, id: int, imgfile) -> Pet or int:
+        res = self._session.post(url=f"{self._url}/{id}/uploadImage",
+                                 params=image, data=imgfile, headers=self._headers)
         if res.status_code == 200:
             pet = res.json()
             my_pet = Pet(**pet)

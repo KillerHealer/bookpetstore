@@ -114,7 +114,7 @@ class Pet(baseObj):
         :return: The photo urls of this Pet.  # noqa: E501
         :rtype: photo urls
         """
-        return self._tags
+        return self._photo_urls
 
     @photourls.setter
     def photourls(self, photo_urls):
