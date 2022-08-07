@@ -13,17 +13,17 @@ from models.order import Order, OrderStatus
 url = "https://petstore3.swagger.io/api/v3"
 header = {'accept': 'application/json'}
 dog_category = {"id": 1, "name": "Dogs"}
-my_dog = Pet.Pet(1, "my_dog", dog_category, "available")
+my_dog = Pet.Pet(11110, "my_dog", dog_category, "available")
 my_user = User(10, "Me", "Noam", "Barkai", "barkai@email.com", "12345", "12345", 2)
 my_user1 = User(11, "you", "Mishel", "Barkai", "barkai23@email.com", "12332", "12344", 3)
 my_user_list = [{"id": 12,
-    "username": "User",
-    "firstName": "John",
-    "lastName": "James",
-    "email": "john@email.com",
-    "password": "12345",
-    "phone": "12345",
-    "userStatus": 1}]
+                 "username": "User",
+                 "firstName": "John",
+                 "lastName": "James",
+                 "email": "john@email.com",
+                 "password": "12345",
+                 "phone": "12345",
+                 "userStatus": 1}]
 my_order = Order(1, 19872, 5, "2022-08-06T23:31:28.815+00:00", OrderStatus.approved, False)
 apiP = pet_api.PetApi()
 apiO = order_api.OrderApi()
@@ -37,12 +37,9 @@ def test_put_pet():
     :return:
     """
     logging.info("trying to find and update the pet")
-    response = apiP.put_pet({'name': 'doge'})
-    if isinstance(response, Pet.Pet):
-        assert response.name == "doge"
-    else:
-        logging.warning(f"status code {response} from put pet")
-        assert False
+    new_pet = apiP.put_pet({'name': 'doge'})
+    assert new_pet.name == "doge"
+    # logging.warning(f"status code {response} from put pet")
 
 
 @pytest.mark.pet()
@@ -52,12 +49,9 @@ def test_post_new_pet():
     :return:
     """
     logging.info("trying to add a new pet")
-    response = apiP.post_new_pet(my_dog)
-    if isinstance(response, Pet.Pet):
-        assert response.id == my_dog.id
-    else:
-        logging.warning(f"status code {response} from post new pet")
-        assert False
+    new_pet = apiP.post_new_pet(my_dog)
+    assert new_pet.id == my_dog.id
+    # logging.warning(f"status code {response} from post new pet")
 
 
 @pytest.mark.pet()
@@ -67,15 +61,12 @@ def test_get_pet_by_status():
     :return:
     """
     logging.info("trying to find all pets with the status")
-    response = apiP.get_pet_by_status("available")
-    if isinstance(response, (list, Pet.Pet)):
-        for res in response:
-            if res.status != Status.available.name:
-                assert False
-        assert True
-    else:
-        logging.warning(f"status code {response} from get pet by status")
-        assert False
+    pet_list = apiP.get_pet_by_status("available")
+    for pet in pet_list:
+        if pet.status != Status.available.name:
+            assert False
+    assert True
+    # logging.warning(f"status code {response} from get pet by status")
 
 
 @pytest.mark.pet()
@@ -85,15 +76,12 @@ def test_get_pet_by_tags():
     :return:
     """
     logging.info("trying to find pets with given tags")
-    response = apiP.get_pet_by_tags("tags=cat")
-    if isinstance(response, (list, Pet.Pet)):
-        for res in response:
-            if res.tags != "cat":
-                assert False
-        assert True
-    else:
-        logging.warning(f"status code {response} from get pet by tags")
-        assert False
+    pet_list = apiP.get_pet_by_tags("tags=cat")
+    for pet in pet_list:
+        if pet.tags != "cat":
+            assert False
+    assert True
+    # logging.warning(f"status code {response} from get pet by tags")
 
 
 @pytest.mark.pet()
@@ -103,12 +91,9 @@ def test_get_pet_by_id():
     :return:
     """
     logging.info("trying to find pets with given id")
-    response = apiP.get_pet_by_id(10)
-    if isinstance(response, Pet.Pet):
-        assert response.id == 10
-    else:
-        logging.warning(f"status code {response} from get pet by id")
-        assert False
+    pet_with_id = apiP.get_pet_by_id(10)
+    assert pet_with_id.id == 10
+    # logging.warning(f"status code {response} from get pet by id")
 
 
 @pytest.mark.pet()
@@ -118,23 +103,20 @@ def test_post_pet():
     :return:
     """
     logging.info("finding pet by id and updating name and status")
-    response = apiP.post_update_pet("name=doge&status=available")
-    if isinstance(response, Pet.Pet):
-        assert response.name == "doge"
-    else:
-        logging.warning(f"status code {response} from update pet name")
-        assert False
+    updated_pet = apiP.post_update_pet("name=doge&status=available")
+    assert updated_pet.name == "doge"
+    # logging.warning(f"status code {response} from update pet name")
 
 
 @pytest.mark.pet()
 def test_delete_pet():
     """
-    finds pet by id and deletes it
+    finds pet by id deletes it and then tries to find it again
     :return:
     """
     logging.info("finding pet by id and deleting it")
-    response = apiP.delete_pet(2)
-    if isinstance(response, Pet.Pet):
+    deleted_pet = apiP.delete_pet(2)
+    if isinstance(deleted_pet, Pet.Pet):
         logging.warning(f"couldn't delete pet for some reason")
         assert False
     else:
@@ -148,13 +130,11 @@ def test_post_upload_image():
     finds pet with id and uploads an image for it
     :return:
     """
+    pet = apiP.post_new_pet(my_dog)
     logging.info("finding pet by id and uploads an image for it")
-    response = apiP.post_upload_image("additionalMetadata=string", 11110)
-    if isinstance(response, Pet.Pet):
-        assert response.photourls == "string"
-    else:
-        logging.warning(f"status code {response} from upload image")
-        assert False
+    pet_with_image = apiP.post_upload_image("additionalMetadata=string", 11110)
+    assert pet_with_image.photourls == "string"
+    # logging.warning(f"status code {response} from upload image")
 
 
 @pytest.mark.store()
@@ -164,12 +144,9 @@ def test_get_inventory_by_status():
     :return:
     """
     logging.info("finding inventory")
-    response = apiO.get_inventory()
-    if isinstance(response, Inventory):
-        assert True
-    else:
-        logging.warning(f"status code {response} from get inventory")
-        assert False
+    new_inventory = apiO.get_inventory()
+    assert isinstance(new_inventory, Inventory)
+    # logging.warning(f"status code {response} from get inventory")
 
 
 @pytest.mark.store()
@@ -179,12 +156,9 @@ def test_post_order():
     :return:
     """
     logging.info("making an order for it")
-    response = apiO.post_new_order(my_order)
-    if isinstance(response, Order):
-        assert response.id == my_order.id
-    else:
-        logging.warning(f"status code {response} from post new order")
-        assert False
+    new_order = apiO.post_new_order(my_order)
+    assert new_order.id == my_order.id
+    # logging.warning(f"status code {response} from post new order")
 
 
 @pytest.mark.store()
@@ -195,22 +169,19 @@ def test_get_order_by_id():
     """
     logging.info("finding order by id")
     response = apiO.get_order_by_id(1)
-    if isinstance(response, Order):
-        assert response.id == 1
-    else:
-        logging.warning(f"status code {response} from get order")
-        assert False
+    assert response.id == 1
+    # logging.warning(f"status code {response} from get order")
 
 
 @pytest.mark.store()
 def test_delete_order():
     """
-    finds order by id and deletes it
+    finds order by id deletes it and then tries to find it again
     :return:
     """
     logging.info("finding order by id and deleting it")
-    response = apiO.delete_order_by_id(1)
-    if isinstance(response, Order):
+    deleted_order = apiO.delete_order_by_id(1)
+    if isinstance(deleted_order, Order):
         logging.warning(f"couldn't delete order for some reason")
         assert False
     else:
@@ -225,12 +196,9 @@ def test_post_new_user():
     :return:
     """
     logging.info("creating new user and adding it to the system")
-    response = apiU.post_new_user(my_user)
-    if isinstance(response, User):
-        assert response.id == my_user.id
-    else:
-        logging.warning(f"status code {response} from post new user")
-        assert False
+    new_user = apiU.post_new_user(my_user)
+    assert new_user.id == my_user.id
+    # logging.warning(f"status code {response} from post new user")
 
 
 @pytest.mark.user()
@@ -240,12 +208,9 @@ def test_post_new_list_of_users():
     :return:
     """
     logging.info("creating new users and adding them to the system")
-    response = apiU.post_list_of_new_users(my_user_list.__str__())
-    if isinstance(response, (list, User)):
-        assert len(response) == len(my_user_list)
-    else:
-        logging.warning(f"status code {response} from post new user list")
-        assert False
+    user_list = apiU.post_list_of_new_users(my_user_list.__str__())
+    assert len(user_list) == len(my_user_list)
+    # logging.warning(f"status code {response} from post new user list")
 
 
 @pytest.mark.user()
@@ -255,12 +220,12 @@ def test_get_user_into_system():
     :return:
     """
     logging.info("logging in user")
-    response = apiU.get_user_logged_in("username=1&password=a")
-    if isinstance(response, str):
-        logging.warning(f"{response} success")
+    login_info = apiU.get_user_logged_in("username=1&password=a")
+    if isinstance(login_info, str):
+        logging.warning(f"{login_info} success")
         assert True
     else:
-        logging.warning(f"status code {response} from get user logged in")
+        logging.warning(f"status code {login_info} from get user logged in")
         assert False
 
 
@@ -271,12 +236,12 @@ def test_get_user_out_of_system():
     :return:
     """
     logging.info("logging the current user out of the system")
-    response = apiU.get_user_logged_out()
-    if isinstance(response, str):
-        logging.warning(f"{response} success")
+    logout_info = apiU.get_user_logged_out()
+    if isinstance(logout_info, str):
+        logging.warning(f"{logout_info} success")
         assert True
     else:
-        logging.warning(f"status code {response} from get user logged in")
+        logging.warning(f"status code {logout_info} from get user logged in")
         assert False
 
 
@@ -287,12 +252,9 @@ def test_get_user_by_username():
     :return:
     """
     logging.info("finding user by username")
-    response = apiU.get_user_by_username("Me")
-    if isinstance(response, User):
-        assert response.id == my_user.id
-    else:
-        logging.warning(f"status code {response} from get user by id")
-        assert False
+    user_with_username = apiU.get_user_by_username("Me")
+    assert user_with_username.id == my_user.id
+    # logging.warning(f"status code {response} from get user by id")
 
 
 @pytest.mark.user()
@@ -301,12 +263,9 @@ def test_put_update_user():
     updates an existent user to a default state in the store
     :return:
     """
-    response = apiU.put_update_user("a")
-    if isinstance(response, User):
-        assert response.id == my_user.id
-    else:
-        logging.warning(f"status code {response} from get user by id")
-        assert False
+    updated_user = apiU.put_update_user("a")
+    assert updated_user.id == my_user.id
+    # logging.warning(f"status code {response} from get user by id")
 
 
 @pytest.mark.user()
@@ -316,10 +275,10 @@ def test_delete_user():
     :return:
     """
     logging.info("finding user by id and deletes it")
-    response = apiU.delete_user("a")
-    if isinstance(response, User):
+    deleted_user = apiU.delete_user("a")
+    if isinstance(deleted_user, User):
         logging.warning("couldn't delete user")
         assert False
     else:
-        logging.warning(f"status code {response} from delete user which means success!")
+        logging.warning(f"status code {deleted_user} from delete user which means success!")
         assert True
