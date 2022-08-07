@@ -4,6 +4,8 @@ import requests
 from api import pet_api
 from api import order_api
 from api.order_api import Inventory
+from api.user_api import UserApi
+from models.user import User
 from models import Pet
 from models.Pet import Status
 from models.order import Order, OrderStatus
@@ -12,15 +14,20 @@ url = "https://petstore3.swagger.io/api/v3"
 header = {'accept': 'application/json'}
 dog_category = {"id": 1, "name": "Dogs"}
 my_dog = Pet.Pet(1, "my_dog", dog_category, "available")
-my_user = {"id": 10, "username": "Me", "firstName": "Noam", "lastName": "Barkai",
-           "email": "barkai@email.com", "password": "12345", "phone": "12345", "userStatus": 2}
-my_user_list = """[{"id": 10, "username": "Me", "firstName": "Noam", "lastName": "Barkai",
-                 "email": "barkai@email.com", "password": "12345", "phone": "12345", "userStatus": 2},
-                {"id": 11, "username": "theUser", "firstName": "John", "lastName": "James",
-                 "email": "john@email.com", "password": "12345", "phone": "12345", "userStatus": 1}]"""
+my_user = User(10, "Me", "Noam", "Barkai", "barkai@email.com", "12345", "12345", 2)
+my_user1 = User(11, "you", "Mishel", "Barkai", "barkai23@email.com", "12332", "12344", 3)
+my_user_list = [{"id": 12,
+    "username": "User",
+    "firstName": "John",
+    "lastName": "James",
+    "email": "john@email.com",
+    "password": "12345",
+    "phone": "12345",
+    "userStatus": 1}]
 my_order = Order(1, 19872, 5, "2022-08-06T23:31:28.815+00:00", OrderStatus.approved, False)
 apiP = pet_api.PetApi()
 apiO = order_api.OrderApi()
+apiU = UserApi()
 
 
 @pytest.mark.pet()
@@ -177,6 +184,7 @@ def test_post_order():
         assert response.id == my_order.id
     else:
         logging.warning(f"status code {response} from post new order")
+        assert False
 
 
 @pytest.mark.store()
@@ -191,6 +199,7 @@ def test_get_order_by_id():
         assert response.id == 1
     else:
         logging.warning(f"status code {response} from get order")
+        assert False
 
 
 @pytest.mark.store()
@@ -216,8 +225,12 @@ def test_post_new_user():
     :return:
     """
     logging.info("creating new user and adding it to the system")
-    response = requests.post(f"{url}/user", headers=header, data=my_user)
-    assert response.status_code == 200
+    response = apiU.post_new_user(my_user)
+    if isinstance(response, User):
+        assert response.id == my_user.id
+    else:
+        logging.warning(f"status code {response} from post new user")
+        assert False
 
 
 @pytest.mark.user()
@@ -227,8 +240,12 @@ def test_post_new_list_of_users():
     :return:
     """
     logging.info("creating new users and adding them to the system")
-    response = requests.post(f"{url}/user/createWithList", headers=header, data=my_user_list)
-    assert response.status_code == 200
+    response = apiU.post_list_of_new_users(my_user_list.__str__())
+    if isinstance(response, (list, User)):
+        assert len(response) == len(my_user_list)
+    else:
+        logging.warning(f"status code {response} from post new user list")
+        assert False
 
 
 @pytest.mark.user()
@@ -238,8 +255,13 @@ def test_get_user_into_system():
     :return:
     """
     logging.info("logging in user")
-    response = requests.get(f"{url}/user/login", params="username=1&password=a", headers=header)
-    assert response.status_code == 200
+    response = apiU.get_user_logged_in("username=1&password=a")
+    if isinstance(response, str):
+        logging.warning(f"{response} success")
+        assert True
+    else:
+        logging.warning(f"status code {response} from get user logged in")
+        assert False
 
 
 @pytest.mark.user()
@@ -249,29 +271,42 @@ def test_get_user_out_of_system():
     :return:
     """
     logging.info("logging the current user out of the system")
-    response = requests.get(f"{url}/user/logout", headers=header)
-    assert response.status_code == 200
+    response = apiU.get_user_logged_out()
+    if isinstance(response, str):
+        logging.warning(f"{response} success")
+        assert True
+    else:
+        logging.warning(f"status code {response} from get user logged in")
+        assert False
 
 
 @pytest.mark.user()
-def test_get_user_by_id():
+def test_get_user_by_username():
     """
-    finds user by id
+    finds user by username
     :return:
     """
-    logging.info("finding user by id")
-    response = requests.get(f"{url}/user/a", headers=header)
-    assert response.status_code == 200
+    logging.info("finding user by username")
+    response = apiU.get_user_by_username("Me")
+    if isinstance(response, User):
+        assert response.id == my_user.id
+    else:
+        logging.warning(f"status code {response} from get user by id")
+        assert False
 
 
 @pytest.mark.user()
-def test_put_logged_in_user():
+def test_put_update_user():
     """
-    updates an existent user in the store
+    updates an existent user to a default state in the store
     :return:
     """
-    response = requests.get(f"{url}/user/theUser", headers=header)
-    assert response.status_code == 200
+    response = apiU.put_update_user("a")
+    if isinstance(response, User):
+        assert response.id == my_user.id
+    else:
+        logging.warning(f"status code {response} from get user by id")
+        assert False
 
 
 @pytest.mark.user()
@@ -281,5 +316,10 @@ def test_delete_user():
     :return:
     """
     logging.info("finding user by id and deletes it")
-    response = requests.delete(f"{url}/user/theUser", headers=header)
-    assert response.status_code == 200
+    response = apiU.delete_user("a")
+    if isinstance(response, User):
+        logging.warning("couldn't delete user")
+        assert False
+    else:
+        logging.warning(f"status code {response} from delete user which means success!")
+        assert True

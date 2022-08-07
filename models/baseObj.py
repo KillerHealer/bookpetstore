@@ -2,7 +2,6 @@ import json
 
 
 class baseObj:
-
     def __init__(self):
         pass
 

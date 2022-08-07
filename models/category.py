@@ -5,7 +5,6 @@ from models.baseObj import baseObj
 class Category(baseObj):
 
     def __init__(self, id=None, name=None):
-
         self._id = None
         self._name = None
         if id is not None:
