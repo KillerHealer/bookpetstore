@@ -21,3 +21,4 @@ class AccountApi:
 
     def post_login_account_generate_token(self, login):
         res = self._session.post(f"{self._url}/GenerateToken", data=login, headers=self._headers)
+        
