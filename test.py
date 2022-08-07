@@ -2,6 +2,9 @@ import pytest
 import logging
 import requests
 
+from api.account_api import AccountApi
+from models.message_model import MessageModel
+
 logger = logging.Logger
 url = "https://bookstore.toolsqa.com/"
 header = {'accept': 'application/json'}
@@ -13,6 +16,7 @@ my_user_list = """[{"id": 10, "username": "Me", "firstName": "Noam", "lastName":
                 {"id": 11, "username": "theUser", "firstName": "John", "lastName": "James",
                  "email": "john@email.com", "password": "12345", "phone": "12345", "userStatus": 1}]"""
 login = {"userName": "string", "password": "String123@"}
+apiA = AccountApi()
 
 
 def test_post_login_account():
@@ -20,9 +24,9 @@ def test_post_login_account():
     tries to log in the user called 'login' and sees if it works
     :return:
     """
-    logging.info("trying to login 'string'")
-    response = requests.post(f"{url}Account/v1/Authorized", data=login, headers=header)
-    assert response.status_code == 200
+    logging.info("trying to login")
+    response = apiA.post_login_authorized(login)
+    assert response
 
 
 def test_post_login_account_generate_token():
