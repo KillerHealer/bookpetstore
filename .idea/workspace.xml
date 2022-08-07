@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3f16d5e0-daca-4f40-9237-026838ec97c1" name="Changes" comment="fixed get inventory">
+      <change beforePath="$PROJECT_DIR$/api/account_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/account_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/book_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/book_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/account.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/token.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/token.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="petshop" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2CiKY8lBecEVd6z98PxDlTWrRiB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/pythonProject/bookpetstore&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\pythonProject\bookpetstore" />
+      <recent name="D:\pythonProject\bookpetstore\api" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python tests.Python tests for test.test_post_new_user">
+    <configuration name="Python tests for test.test_get_order_by_id" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="bookpetstore" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test.test_get_order_by_id&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test.test_post_login_account" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="bookpetstore" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test.test_post_login_account&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test.test_post_new_user" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="bookpetstore" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test.test_post_new_user&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test.test_post_pet" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="bookpetstore" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test.test_post_pet&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests in test.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="bookpetstore" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Python tests for test.test_post_new_user" />
+        <item itemvalue="Python tests.Python tests in test.py" />
+        <item itemvalue="Python tests.Python tests for test.test_post_pet" />
+        <item itemvalue="Python tests.Python tests for test.test_post_login_account" />
+        <item itemvalue="Python tests.Python tests for test.test_get_order_by_id" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3f16d5e0-daca-4f40-9237-026838ec97c1" name="Changes" comment="" />
+      <created>1659280009293</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1659280009293</updated>
+    </task>
+    <task id="LOCAL-00001" summary="first commit">
+      <created>1659280150469</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1659280150469</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Adding api and models">
+      <created>1659288489189</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1659288489189</updated>
+    </task>
+    <task id="LOCAL-00003" summary="first set of tests for petshop">
+      <created>1659462132480</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1659462132480</updated>
+    </task>
+    <task id="LOCAL-00004" summary="last set of tests for petshop">
+      <created>1659549190199</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1659549190199</updated>
+    </task>
+    <task id="LOCAL-00005" summary="first commit for bookstore">
+      <created>1659549702426</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1659549702426</updated>
+    </task>
+    <task id="LOCAL-00006" summary="first set of tests for bookstore">
+      <created>1659560410232</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1659560410232</updated>
+    </task>
+    <task id="LOCAL-00007" summary="second set of tests and some logging for bookstore">
+      <created>1659604459311</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1659604459311</updated>
+    </task>
+    <task id="LOCAL-00008" summary="added comments to all tests and logging for pet store">
+      <created>1659610848953</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1659610848953</updated>
+    </task>
+    <task id="LOCAL-00009" summary="added comments to all tests and logging for pet store">
+      <created>1659626157512</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1659626157512</updated>
+    </task>
+    <task id="LOCAL-00010" summary="swapping a few of the tests for pet store">
+      <created>1659741659825</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1659741659826</updated>
+    </task>
+    <task id="LOCAL-00011" summary="swapping a few more of the tests for pet store">
+      <created>1659824653490</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1659824653490</updated>
+    </task>
+    <task id="LOCAL-00012" summary="implemented order_api.py and swapped tests related to that for pet store">
+      <created>1659833271887</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1659833271887</updated>
+    </task>
+    <task id="LOCAL-00013" summary="implemented user_api.py and swapped tests related to that for pet store">
+      <created>1659875765823</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1659875765823</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fixed a few tests for pet store">
+      <created>1659888631011</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1659888631011</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fixed a few tests for pet store">
+      <created>1659888645505</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1659888645505</updated>
+    </task>
+    <task id="LOCAL-00016" summary="implemented account_api.py and book_api.py for book store">
+      <created>1659896307877</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1659896307877</updated>
+    </task>
+    <task id="LOCAL-00017" summary="implemented token.py for book store">
+      <created>1659897603825</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1659897603825</updated>
+    </task>
+    <task id="LOCAL-00018" summary="gitignore for book store">
+      <created>1659898149353</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1659898149353</updated>
+    </task>
+    <task id="LOCAL-00019" summary="fixed upload image">
+      <created>1659901129289</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1659901129289</updated>
+    </task>
+    <task id="LOCAL-00020" summary="fixed get inventory">
+      <created>1659902056176</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1659902056176</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit" />
+    <MESSAGE value="Adding api and models" />
+    <MESSAGE value="first set of tests for petshop" />
+    <MESSAGE value="last set of tests for petshop" />
+    <MESSAGE value="first commit for bookstore" />
+    <MESSAGE value="first set of tests for bookstore" />
+    <MESSAGE value="second set of tests and some logging for bookstore" />
+    <MESSAGE value="added comments to all tests and logging for pet store" />
+    <MESSAGE value="swapping a few of the tests for pet store" />
+    <MESSAGE value="swapping a few more of the tests for pet store" />
+    <MESSAGE value="implemented order_api.py and swapped tests related to that for pet store" />
+    <MESSAGE value="implemented user_api.py and swapped tests related to that for pet store" />
+    <MESSAGE value="fixed a few tests for pet store" />
+    <MESSAGE value="implemented account_api.py and book_api.py for book store" />
+    <MESSAGE value="implemented token.py for book store" />
+    <MESSAGE value="gitignore for book store" />
+    <MESSAGE value="fixed upload image" />
+    <MESSAGE value="fixed get inventory" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed get inventory" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test.py</url>
+          <line>29</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test.py</url>
+          <line>40</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test.py</url>
+          <line>50</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test.py</url>
+          <line>53</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test.py</url>
+          <line>64</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/api/account_api.py</url>
+          <line>33</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
