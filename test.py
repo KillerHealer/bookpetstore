@@ -20,48 +20,48 @@ login = {"userName": "string", "password": "String123@"}
 apiA = AccountApi()
 
 
-def test_post_login_account():
+def test_post_login_account(params):
     """
     tries to log in the user called 'login' and sees if it works
     :return:
     """
     logging.info("trying to login")
-    response = apiA.post_login_authorized(login)
+    response = apiA.post_login_authorized(login, params)
     assert response
 
 
-def test_post_login_account_generate_token():
+def test_post_login_account_generate_token(params):
     """
     tries to get an authorized token for said account
     :return:
     """
     logging.info("trying to get a token")
-    response = apiA.post_login_account_generate_token(login)
+    response = apiA.post_login_account_generate_token(login, params)
     logging.warning(f"{response}")
     assert isinstance(response, Token)
 
 
-def test_post_new_user():
+def test_post_new_user(params):
     """
     tries to create a new user and then tries to delete it for ease of use
     :return:
     """
     logging.info("trying to create a new user")
-    response = apiA.post_new_user(my_user)
+    response = apiA.post_new_user(my_user, params)
     assert isinstance(response, Account)
     logging.info("trying to delete the user i just created")
     response2 = requests.delete(f"{url}Account/v1/User/{response.userID}", headers=header)
     assert response2.status_code == 200
 
 
-def test_delete_user():
+def test_delete_user(params):
     """
     tries to delete a user
     :return:
     """
     logging.info("trying to delete a user with a 30 character userID")
     ddid = "ca6fea99-bc81-4f06-9ada-14edb56cada1"
-    response = apiA.delete_user(ddid)
+    response = apiA.delete_user(ddid, params)
     assert response.status_code == 200
 
 
