@@ -11,6 +11,4 @@ def params(request):
     params = {}
     params['URL'] = request.config.getoption('--URL')
     # params['password'] = request.config.getoption('--password') or params['password'] is None
-    if params['URL'] is None:
-        pytest.skip()
     return params

@@ -26,7 +26,7 @@ def test_post_login_account(params):
     :return:
     """
     logging.info("trying to login")
-    response = apiA.post_login_authorized(login, params)
+    response = apiA.post_login_authorized(login, params["URL"])
     assert response
 
 
@@ -36,7 +36,7 @@ def test_post_login_account_generate_token(params):
     :return:
     """
     logging.info("trying to get a token")
-    response = apiA.post_login_account_generate_token(login, params)
+    response = apiA.post_login_account_generate_token(login, params["URL"])
     logging.warning(f"{response}")
     assert isinstance(response, Token)
 
@@ -47,7 +47,7 @@ def test_post_new_user(params):
     :return:
     """
     logging.info("trying to create a new user")
-    response = apiA.post_new_user(my_user, params)
+    response = apiA.post_new_user(my_user, params["URL"])
     assert isinstance(response, Account)
     logging.info("trying to delete the user i just created")
     response2 = requests.delete(f"{url}Account/v1/User/{response.userID}", headers=header)
@@ -61,7 +61,7 @@ def test_delete_user(params):
     """
     logging.info("trying to delete a user with a 30 character userID")
     ddid = "ca6fea99-bc81-4f06-9ada-14edb56cada1"
-    response = apiA.delete_user(ddid, params)
+    response = apiA.delete_user(ddid, params["URL"])
     assert response.status_code == 200
 
 
