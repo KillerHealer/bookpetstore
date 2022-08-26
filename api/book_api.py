@@ -22,10 +22,10 @@ class BookApi:
         else:
             return dict(res)
 
-    def post_books(self, url):
+    def post_books(self, addListOfBooks, url):
         if url is None:
             url = "https://bookstore.toolsqa.com/BookStore/v1/Book"
-        res = self._session.post(f"{url}s", headers=self._headers)
+        res = self._session.post(f"{url}s", headers=self._headers, data=addListOfBooks)
         if res.status_code != 200:
             mm = res.json()
             my_mm = MessageModel(**mm)

@@ -1,8 +1,8 @@
 import logging
-
 import requests
-
+from api.book_api import BookApi
 from api.account_api import AccountApi
+from book import Book
 from models.account import Account
 from models.token import Token
 
@@ -18,6 +18,7 @@ my_user_list = """[{"id": 10, "username": "Me", "firstName": "Noam", "lastName":
                  "email": "john@email.com", "password": "12345", "phone": "12345", "userStatus": 1}]"""
 login = {"userName": "string", "password": "String123@"}
 apiA = AccountApi()
+apiB = BookApi()
 
 
 def test_post_login_account(params):
@@ -39,6 +40,8 @@ def test_post_login_account_generate_token(params):
     response = apiA.post_login_account_generate_token(login, params["URL"])
     logging.warning(f"{response}")
     assert isinstance(response, Token)
+
+# from here its not complete...
 
 
 def test_post_new_user(params):
@@ -65,3 +68,20 @@ def test_delete_user(params):
     assert response.status_code == 200
 
 
+def test_get_books(params):
+    """
+    tries to get all of the books in the store
+    :param params:
+    :return:
+    """
+    logging.info("trying to get a dictionary of books")
+    books = apiB.get_books(params["URL"])
+    assert isinstance(books, dict)
+
+
+def test_post_books(params):
+    """
+
+    :param params:
+    :return:
+    """
