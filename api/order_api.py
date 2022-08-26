@@ -17,7 +17,9 @@ class OrderApi:
         self._session = requests.session()
         self._session.headers.update(self._headers)
 
-    def get_inventory(self, url="https://petstore3.swagger.io/api/v3/store"):
+    def get_inventory(self, url: str):
+        if url is None:
+            url = "https://petstore3.swagger.io/api/v3/store"
         res = self._session.get(url=f"{url}/inventory", headers=self._headers)
         inv = res.json()
         if res.status_code == 200:
@@ -27,7 +29,9 @@ class OrderApi:
         else:
             return res.status_code
 
-    def post_new_order(self, order, url="https://petstore3.swagger.io/api/v3/store"):
+    def post_new_order(self, order, url: str):
+        if url is None:
+            url = "https://petstore3.swagger.io/api/v3/store"
         order_data = order.to_json()
         res = self._session.post(url=f"{url}/order", data=order_data, headers=self._headers)
         o1 = res.json()
@@ -37,7 +41,9 @@ class OrderApi:
         else:
             return res.status_code
 
-    def get_order_by_id(self, id, url="https://petstore3.swagger.io/api/v3/store"):
+    def get_order_by_id(self, id, url: str):
+        if url is None:
+            url = "https://petstore3.swagger.io/api/v3/store"
         res = self._session.get(url=f"{url}/order/{id}", headers=self._headers)
         o1 = res.json()
         if res.status_code == 200:
@@ -46,7 +52,9 @@ class OrderApi:
         else:
             return res.status_code
 
-    def delete_order_by_id(self, id, url="https://petstore3.swagger.io/api/v3/store"):
+    def delete_order_by_id(self, id, url: str):
+        if url is None:
+            url = "https://petstore3.swagger.io/api/v3/store"
         res = self._session.delete(url=f"{url}/order/{id}", headers=self._headers)
         if res.status_code == 200:
             res = self._session.get(url=f"{url}/order/{id}", headers=self._headers)
